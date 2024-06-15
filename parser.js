@@ -1,3 +1,28 @@
+function insertExplicitConcatOperator(exp) {
+    let output = '';
+
+    for (let i = 0; i < exp.length; i++) {
+        const token = exp[i];
+        output += token;
+
+        if (token === '(' || token === '|') {
+            continue;
+        }
+
+        if (i < exp.length - 1) {
+            const lookahead = exp[i + 1];
+
+            if (lookahead === '*' || lookahead === '?' || lookahead === '+' || lookahead === '|' || lookahead === ')') {
+                continue;
+            }
+
+            output += '.';
+        }
+    }
+
+    return output;
+};
+
 function peek(stack) {
     return stack.length && stack[stack.length - 1];
 }
@@ -9,14 +34,13 @@ const operatorPrecedence = {
     '*': 2,
     '+': 2
 };
-function isOperator(token){
-    
-}
+
 function toPostfix(exp) {
     let output = '';
     const operatorStack = [];
 
     for (const token of exp) {
+        //if token is an operator
         if (token === '.' || token === '|' || token === '*' || token === '?' || token === '+') {
             while (operatorStack.length && peek(operatorStack) !== '('
                 && operatorPrecedence[peek(operatorStack)] >= operatorPrecedence[token]) {
@@ -44,3 +68,7 @@ function toPostfix(exp) {
 
     return output;
 };
+module.export = {
+    toPostfix,
+    insertExplicitConcatOperator
+}
