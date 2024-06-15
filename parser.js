@@ -68,7 +68,7 @@ function toPostfix(exp) {
 
     return output;
 };
-module.export = {
+module.exports = {
     toPostfix,
     insertExplicitConcatOperator
 }
