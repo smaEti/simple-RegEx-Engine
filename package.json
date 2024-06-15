@@ -1,0 +1,11 @@
+{
+  "name": "simple-regex-engine",
+  "version": "1.0.0",
+  "description": "simple RegEx Engine based on Thompson's construction algorithm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amin Ehterami",
+  "license": "ISC"
+}
