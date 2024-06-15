@@ -1,17 +1,16 @@
 const readline = require('node:readline');
-const {toPostfix} = require('./parser');
+const { createMatcher } = require('./regex');
 const rl = readline.createInterface({
     input : process.stdin,
     output : process.stdout,
 })
 
 rl.question('Pattern (?):' , (pattern) => {
-    //match = createMatcher()
+    const match = createMatcher(pattern);
     console.log('check words:');
 
     rl.on('line' , (input) => {
-        // console.log(match(input))
-        console.log(toPostfix(input));
+        console.log(`Match? ${match(input)}`);
 
         if(input == 'exit'){
             rl.close();
